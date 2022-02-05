@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:movies/ui/colors.dart';
 import 'package:movies/ui/widget/figure_image.dart';
@@ -14,8 +16,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const HomeApp()
+    return const MaterialApp(
+      home: HomeApp()
     );
   }
 }
@@ -30,7 +32,19 @@ class HomeApp extends StatefulWidget {
 
 class _HomeAppState extends State<HomeApp> {
 
-  String word = "flutter".toUpperCase();
+  String word = "";
+
+  List<String> words = [
+    "flutter",
+    "brutkasten",
+    "developer",
+    "fullstack",
+    "corinthians",
+    "react",
+    "nodejs",
+    "acidmud"
+  ];
+
   List<String> alphabet = [
     "A",
     "B",
@@ -59,6 +73,18 @@ class _HomeAppState extends State<HomeApp> {
     "Y",
     "Z"
   ];
+
+  String changeWord() {
+    var numeroSorteado = Random().nextInt(words.length);
+    word = words[numeroSorteado];
+    return word.toString().toUpperCase();
+  }
+
+  @override
+  void initState() {
+    changeWord();
+    super.initState();
+  }
 
    @override
    Widget build(BuildContext context) {
